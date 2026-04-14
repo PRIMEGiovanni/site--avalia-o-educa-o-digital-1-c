@@ -1,0 +1,90 @@
+/* --- DESIGN SYSTEM (:root) --- */
+:root {
+    --primary: #d40000;
+    --secondary: #1a1a1a;
+    --text: #333333;
+    --bg: #ffffff;
+    --radius: 8px;
+    --gap: 20px;
+    --transition: all 0.3s ease;
+}
+
+/* --- MODO ALTO CONTRASTE --- */
+body.high-contrast {
+    --primary: #ffff00;
+    --secondary: #000000;
+    --text: #ffffff;
+    --bg: #000000;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    background-color: var(--bg);
+    line-height: 1.6;
+    transition: var(--transition);
+}
+
+/* --- LAYOUT SISTÊMICO --- */
+header {
+    background: var(--secondary);
+    color: white;
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.controls button {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: var(--radius);
+}
+
+/* --- GRID E FLEXBOX (Mobile-First) --- */
+.grid-container {
+    display: grid;
+    gap: var(--gap);
+    padding: 2rem 5%;
+    /* No Mobile: 1 coluna. Mude no Media Query abaixo */
+    grid-template-columns: 1fr;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: transform 0.3s;
+}
+
+.card:hover { transform: translateY(-5px); }
+
+/* --- ANIMAÇÕES (Scroll Reveal) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- RESPONSIVIDADE (Desktop) --- */
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr); /* Altere aqui o número de colunas */
+    }
+}
