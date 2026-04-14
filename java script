@@ -1,0 +1,75 @@
+// --- GESTÃO DE DADOS (DATABASE SIMULATION) ---
+const treinos = [
+    { titulo: "Progressão de Carga", desc: "Aumentar gradualmente o peso para desafiar as fibras." },
+    { titulo: "Tensionamento", desc: "Manter o músculo sob tensão por períodos mais longos." },
+    { titulo: "Volume Altamente Focado", desc: "Séries específicas para grupos musculares isolados." }
+];
+
+const anatomia = [
+    { area: "Membros Superiores", detalhes: "Foco em Peitorais, Dorsais e Deltoides." },
+    { area: "Core e Estabilidade", detalhes: "Fortalecimento do Abs e região Lombar." }
+];
+
+// --- RENDERIZAÇÃO DINÂMICA ---
+function initApp() {
+    const grid = document.getElementById('methods-grid');
+    const accordion = document.getElementById('anatomy-accordion');
+
+    // Injetando Cards
+    treinos.forEach(item => {
+        grid.innerHTML += `
+            <article class="card">
+                <h3>${item.titulo}</h3>
+                <p>${item.desc}</p>
+            </article>
+        `;
+    });
+
+    // Injetando Acordeão (Acessibilidade: Toggle)
+    anatomia.forEach((item, index) => {
+        accordion.innerHTML += `
+            <div class="accordion-item">
+                <button onclick="toggleAccordion(${index})" class="acc-trigger">
+                    ${item.area}
+                </button>
+                <div id="acc-content-${index}" class="acc-content" style="display:none">
+                    <p>${item.detalhes}</p>
+                </div>
+            </div>
+        `;
+    });
+}
+
+// --- FUNÇÕES DE ACESSIBILIDADE ---
+let fontSize = 100;
+document.getElementById('btn-font-up').onclick = () => {
+    fontSize += 10;
+    document.body.style.fontSize = `${fontSize}%`;
+};
+
+document.getElementById('btn-font-down').onclick = () => {
+    fontSize -= 10;
+    document.body.style.fontSize = `${fontSize}%`;
+};
+
+document.getElementById('btn-contrast').onclick = () => {
+    document.body.classList.toggle('high-contrast');
+};
+
+// --- SCROLL REVEAL LOGIC ---
+window.addEventListener('scroll', () => {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const revealTop = el.getBoundingClientRect().top;
+        if (revealTop < windowHeight - 100) el.classList.add('active');
+    });
+});
+
+// --- LÓGICA DO ACORDEÃO ---
+function toggleAccordion(index) {
+    const content = document.getElementById(`acc-content-${index}`);
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+}
+
+initApp();
