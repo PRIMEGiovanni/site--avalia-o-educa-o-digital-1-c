@@ -1,90 +1,147 @@
-/* --- DESIGN SYSTEM (:root) --- */
+/* Variáveis CSS para a paleta de cores, espaçamentos e arredondamentos */
 :root {
-    --primary: #d40000;
-    --secondary: #1a1a1a;
-    --text: #333333;
-    --bg: #ffffff;
+    --primary-color: #1a73e8;
+    --secondary-color: #f0f0f0;
+    --accent-color: #ff5722;
+    --text-color: #333;
+    --background-color: #fff;
+    --high-contrast-background: #000;
+    --high-contrast-text: #fff;
+    --font-size-base: 16px;
+    --font-size-large: 18px;
+    --spacing-small: 10px;
+    --spacing-medium: 20px;
+    --spacing-large: 40px;
     --radius: 8px;
-    --gap: 20px;
-    --transition: all 0.3s ease;
 }
 
-/* --- MODO ALTO CONTRASTE --- */
-body.high-contrast {
-    --primary: #ffff00;
-    --secondary: #000000;
-    --text: #ffffff;
-    --bg: #000000;
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text);
-    background-color: var(--bg);
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: var(--font-size-base);
     line-height: 1.6;
-    transition: var(--transition);
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* --- LAYOUT SISTÊMICO --- */
+/* Modo de alto contraste */
+body.high-contrast {
+    background-color: var(--high-contrast-background);
+    color: var(--high-contrast-text);
+}
+
+/* Estilo do cabeçalho */
 header {
-    background: var(--secondary);
-    color: white;
-    padding: 1rem 5%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    background-color: var(--primary-color);
+    padding: var(--spacing-medium);
 }
 
-nav {
+header nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+header nav ul li a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Layout responsivo e flexível com Grid e Flexbox */
+main {
+    padding: var(--spacing-large);
+}
+
+/* Seções */
+section {
+    margin-bottom: var(--spacing-large);
+}
+
+section h1, section h2 {
+    margin-bottom: var(--spacing-medium);
+}
+
+/* Grid para as seções de métodos e dicas */
+#methods-list, #tips-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-medium);
+}
+
+/* Cards de métodos e dicas */
+.method-card, .tip-card {
+    background-color: var(--secondary-color);
+    padding: var(--spacing-medium);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.method-card h3, .tip-card p {
+    margin-bottom: var(--spacing-small);
+}
+
+/* Animação de entrada suave (Scroll Reveal) */
+.scroll-reveal {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+}
+
+/* Botões e componentes interativos */
+button {
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    border: none;
+    padding: var(--spacing-small) var(--spacing-medium);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: var(--primary-color);
+}
+
+/* Carrossel de testemunhos */
+#testimonials-carousel {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: var(--spacing-large);
 }
 
-.controls button {
-    background: transparent;
-    border: 1px solid white;
-    color: white;
-    padding: 5px 10px;
-    cursor: pointer;
+.testimonial-card {
+    background-color: var(--secondary-color);
+    padding: var(--spacing-small);
     border-radius: var(--radius);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: center;
 }
 
-/* --- GRID E FLEXBOX (Mobile-First) --- */
-.grid-container {
-    display: grid;
-    gap: var(--gap);
-    padding: 2rem 5%;
-    /* No Mobile: 1 coluna. Mude no Media Query abaixo */
-    grid-template-columns: 1fr;
-}
+/* Responsividade: Adaptando o layout para dispositivos móveis */
+@media (max-width: 768px) {
+    #methods-list, #tips-list {
+        grid-template-columns: 1fr;
+    }
 
-.card {
-    border: 1px solid #ddd;
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    transition: transform 0.3s;
-}
+    header nav ul {
+        flex-direction: column;
+        padding-top: var(--spacing-small);
+    }
 
-.card:hover { transform: translateY(-5px); }
-
-/* --- ANIMAÇÕES (Scroll Reveal) --- */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: 0.8s ease-out;
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* --- RESPONSIVIDADE (Desktop) --- */
-@media (min-width: 768px) {
-    .grid-container {
-        grid-template-columns: repeat(3, 1fr); /* Altere aqui o número de colunas */
+    header nav ul li {
+        margin-bottom: var(--spacing-small);
     }
 }
