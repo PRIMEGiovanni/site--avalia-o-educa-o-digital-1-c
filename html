@@ -3,42 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protocolo de Força | Máxima Performance</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Músculos & Força</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <nav aria-label="Menu Principal">
-            <div class="logo">FORÇA<span>ATIVA</span></div>
-            <div class="controls">
-                <button id="btn-contrast" title="Alternar Alto Contraste">🌓</button>
-                <button id="btn-font-up" title="Aumentar Fonte">A+</button>
-                <button id="btn-font-down" title="Diminuir Fonte">A-</button>
-            </div>
+        <nav>
+            <ul>
+                <li><a href="#section1" aria-label="Seção de métodos">Métodos</a></li>
+                <li><a href="#section2" aria-label="Seção de dicas de treino">Dicas de Treino</a></li>
+                <li><a href="#section3" aria-label="Seção de testemunhos">Testemunhos</a></li>
+            </ul>
         </nav>
     </header>
 
     <main>
-        <section id="hero" class="reveal">
-            <h1>Construa sua melhor versão</h1>
-            <p>Métodos baseados em ciência para ganho de força e hipertrofia.</p>
+        <section id="section1" class="scroll-reveal">
+            <article>
+                <h1>Métodos para Ficar Mais Forte</h1>
+                <p>Descubra como você pode ganhar força com os métodos mais eficazes.</p>
+            </article>
+            <div id="methods-list"></div> <!-- Métodos gerados dinamicamente -->
         </section>
 
-        <section id="methods" class="reveal" aria-labelledby="methods-title">
-            <h2 id="methods-title">Métodos de Treinamento</h2>
-            <div id="methods-grid" class="grid-container">
-                </div>
+        <section id="section2" class="scroll-reveal">
+            <article>
+                <h2>Dicas de Treino</h2>
+                <p>Veja as melhores dicas para potencializar seu treino e ficar mais forte.</p>
+            </article>
+            <div id="tips-list"></div> <!-- Dicas geradas dinamicamente -->
         </section>
 
-        <section id="anatomy" class="reveal">
-            <h2>Anatomia e Foco</h2>
-            <div id="anatomy-accordion" class="accordion-container">
-                </div>
+        <section id="section3" class="scroll-reveal">
+            <article>
+                <h2>Testemunhos</h2>
+                <div id="testimonials-carousel"></div> <!-- Carrossel de testemunhos -->
+            </article>
         </section>
     </main>
 
-    <footer role="contentinfo">
-        <p>&copy; 2024 Protocolo de Força. Design acessível.</p>
+    <footer>
+        <p>&copy; 2026 Todos os direitos reservados</p>
+        <button onclick="toggleFontSize()">Ajustar Tamanho da Fonte</button>
     </footer>
 
     <script src="script.js"></script>
